@@ -1,0 +1,23 @@
+{
+    "versao": "1.2.0.0",
+    "https": true,
+    "404": "default",
+    "minify": true,
+    "vars": {
+
+    },
+    "paginas": {
+        "default": {
+            "caminho": ["/"],
+            "layout": "It's Working!",
+            "modelo": false,
+            "scripts": [],
+            "styles": [],
+            "controle": false,
+            "type": "text/plain",
+            "persistente": true,
+            "minify": false,
+            "variaveis": {}
+        }
+    }
+}
