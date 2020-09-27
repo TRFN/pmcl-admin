@@ -9,11 +9,11 @@
     "paginas": {
         "default": {
             "caminho": ["/"],
-            "layout": "It's Working!",
+            "layout": "",
             "modelo": false,
             "scripts": [],
             "styles": [],
-            "controle": false,
+            "controle": "ui",
             "type": "text/plain",
             "persistente": true,
             "minify": false,
