@@ -100,8 +100,8 @@ atualizarCores = (function(){
 
                 $("#json").jsonEditor((window.jsonOutput=feed(jsonOutput, e, (u=JSON.parse($(this).parent().find(".value").val())))), $jsonProps);
                 atualizarCores();
-                // o = '.item[data-path="' + o + '"]';
-                // $(o).first().parent().addClass("expanded");
+                o = '.item[data-path="' + o + '"]';
+                $(o).first().parent().addClass("expanded").parent().addClass("expanded").parent().addClass("expanded");
                 // console.log($(o + ":not(.appender)").last()[0].outerHTML);
                 // $($(o + ":not(.appender)").last()[0].outerHTML).insertAfter($(this).parent());
             })

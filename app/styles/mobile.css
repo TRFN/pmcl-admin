@@ -3,11 +3,7 @@
   padding: 20px;
 }
 
-.json-editor.expanded .item:not(.disabled) {
-  display: block !important;
-}
-
-.json-editor.expanded .item.disabled {
+.json-editor .item.disabled {
   display: none!important;
 }
 
