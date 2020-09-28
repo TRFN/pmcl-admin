@@ -1,0 +1,52 @@
+
+
+<div class="row">
+    <div class="col-md-1">&nbsp;</div>
+    <div class="col-md-4" id="saudacoes-home">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>
+                    Bem vindo!
+                    <span style="float: right; cursor: pointer;" onclick="$('#saudacoes-home').fadeOut().promise().done(function(){$(this).remove();$('#painel-regras').removeClass('col-md-6').addClass('col-md-10');});">
+                        <i class="fa fa-times-circle"></i>
+                    </span>
+                </h4>
+            </div>
+            <div class="panel-body row">
+                <div class="col-md-12">
+                    Selecione um site que deseje administrar. Os sites disponiveis são apenas os que contem o core do PCML.<br />Desenvolvido por <a href="https://site13.com.br"> Tulio R. F. Nascimento</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" id="painel-regras">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>
+                    Ajuda & Informações
+                    <span style="float: right; cursor: pointer;" onclick="$('#painel-regras').fadeOut().promise().done(function(){$(this).remove();$('#saudacoes-home').removeClass('col-md-4').addClass('col-md-10');});">
+                        <i class="fa fa-times-circle"></i>
+                    </span>
+                </h4>
+            </div>
+            <div class="panel-body" style="font-size: 11px;">
+                <div>
+                    <a href="/ajuda/o-que-e">&nbsp;&ndash;&nbsp;O que é o PMCL?</a>
+                </div>
+
+                <div>
+                    <a href="/ajuda/configuracao-basica">&nbsp;&ndash;&nbsp;Como configurar o ambiente</a>
+                </div>
+
+                <div>
+                    <a href="/ajuda/primeiros-passos">&nbsp;&ndash;&nbsp;Iniciando o desenvolvimento</a>
+                </div>
+
+                <div>
+                    <a href="/ajuda/funcoes">&nbsp;&ndash;&nbsp;Lista de funções</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    %navegacao%
+</div>

@@ -4,20 +4,29 @@
     "404": "default",
     "minify": true,
     "vars": {
-
+        "titulo": "PMCL Admin 0.1.0.0",
+        "cortema": "200, 40, 44",
+        "input-error": "_none_",
+        "debug": "",
+        "mensagem-aviso": "",
+        "mensagem-erro": "",
+        "scriptextra": "",
+        "onchange": ""
     },
     "paginas": {
         "default": {
             "caminho": ["/"],
-            "layout": "",
-            "modelo": false,
-            "scripts": [],
-            "styles": [],
+            "layout": "index",
+            "modelo": "template",
+            "scripts": ["editor","tabelas"],
+            "styles": ["mobile"],
             "controle": "ui",
-            "type": "text/plain",
+            "type": "text/html",
             "persistente": true,
             "minify": false,
-            "variaveis": {}
+            "variaveis": {
+                "navegacao": "navegacao"
+            }
         }
     }
 }

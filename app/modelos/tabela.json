@@ -1,0 +1,10 @@
+{
+    "contem": {
+        "html": {
+                "layout": "tabelas",
+                "vars": {}
+            }
+    },
+
+    "montagem": ["html"]
+}
