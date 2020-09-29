@@ -4,7 +4,11 @@
 }
 
 .json-editor .item.disabled {
-  display: none!important;
+    display: none!important;
+}
+
+.json-editor .dup.disabled {
+    filter:grayscale(100%);
 }
 
 .json-editor .property,

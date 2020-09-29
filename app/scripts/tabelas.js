@@ -34,59 +34,45 @@ for(i = 0; i < projetos.length; i++ ){
     $("#projetos").append('<div class="col-md-3 col-lg-2"><a href="/%subd%' + String(i) + '" class="btn btn-primary btn-block" style="font-weight: bold;margin: 24px 0;font-size: 12px;">' + nome[nome.length-1] + '</a></div>');
 }
 
-function HSVtoRGB(h, s, v) {
-    var r, g, b, i, f, p, q, t;
-    if (arguments.length === 1) {
-        s = h.s, v = h.v, h = h.h;
-    }
-    i = Math.floor(h * 6);
-    f = h * 6 - i;
-    p = v * (1 - s);
-    q = v * (1 - f * s);
-    t = v * (1 - (1 - f) * s);
-    switch (i % 6) {
-        case 0: r = v, g = t, b = p; break;
-        case 1: r = q, g = v, b = p; break;
-        case 2: r = p, g = v, b = t; break;
-        case 3: r = p, g = q, b = v; break;
-        case 4: r = t, g = p, b = v; break;
-        case 5: r = v, g = p, b = q; break;
-    }
-    return {
-        r: Math.round(r * 255),
-        g: Math.round(g * 255),
-        b: Math.round(b * 255)
-    };
-}
-
 function acaocor(color) {
-    if(!/hsv/.test($(this).val())){
+    if(!/rgb/.test($(this).val())){
         $(this).val($(this).val().split("rgb(").join('"').split(")").join('"'));
-    } else {
-        $(this).val("0, 0, 0");
     }
 }
 
-$("#search").keyup(function(){
-    if($(this).val().length == 0){
-        $("#json .item").removeClass('expanded');
+$("#buscar").click(function(){
+    if($("#search").val().length == 0){
+        $("#json .item, #json .dup").removeClass('expanded disabled');
     } else {
-        window.query = $(this).val();
-        $("#json .item").addClass("disabled");
-        $("#json .item").removeClass("expanded").each(function(){
-            if($(this).html().split(query).length > 1){
-                $(this).removeClass("disabled").addClass("expanded");
-                $(this).find("> .item:first").removeClass("disabled").addClass("expanded");
-            }
-        });
+        $("#json .item, #json .dup").addClass("disabled");
+        f = function(ctx){
+            query = $("#search").val();
+            $(ctx).find(" > .item:not(.appender)").removeClass("expanded").addClass("disabled").each(function(){
+                pesq = (r=new RegExp(query.toLowerCase(), 'i')).test(this.innerHTML);
+                pesq = pesq || r.test($(this).data("path"));
+
+                if(pesq){
+                    $(this).removeClass("disabled").addClass("expanded");
+                    f(this);
+                } else {
+                    $(this).addClass("disabled").removeClass("expanded")
+                        .find(".item:not(.appender)").addClass("disabled").removeClass("expanded");
+                }
+            });
+        };
+
+        f("#json");
     }
-})
+});
 
 atualizarCores = (function(){
     $("input.value").each(function(){
         $(this).parent().find(".dup").length == 0 && (
             $("<a class='dup btn btn-primary'><i class='fa fa-files-o fa-fw'></i></a>").insertAfter(this),
             $(this).parent().find(".dup").click(function(){
+
+                if($(this).hasClass("disabled"))return;
+
                 e = $(this).parent().data("path").split(".");
                 o = $(this).parent().data("path");
                 u = $(this).parent().find(".property").val() + " - copia";
@@ -136,3 +122,10 @@ atualizarCores = (function(){
 });
 
 atualizarCores();
+
+$("#salvar").click(function(){
+    code = JSON.stringify(jsonOutput);
+    $.post(location.href, {k: code}, function(data){
+        swal("", "Alterações salvas!", "success");
+    })
+});

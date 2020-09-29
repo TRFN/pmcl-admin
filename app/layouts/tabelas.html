@@ -7,7 +7,16 @@
                 <i class="fa fa-%painel-icone%"></i> <strong>%painel-titulo%</strong>
             </div>
             <div class="panel-body">
-                <div class="col-md-4 col-md-offset-8"><input id="search" class="form-control" /></div>
+                <div class="col-md-5">
+                    <div class="col-md-6">
+                        <button id="salvar" class="btn btn-primary btn-block">Salvar Alterações</button>
+                    </div>
+                </div>
+                <form onsubmit="$('#buscar').click();return false;" autocomplete="off" class="col-md-7">
+                    <div class="col-md-8"><input id="search"  autocomplete="off" class="form-control" /></div>
+                    <div class="col-md-2"><button class="btn btn-primary btn-block" id="buscar">Buscar</button></div>
+                    <div class="col-md-2"><a class="btn btn-warning btn-block" onclick="$('#search').val('');$('#buscar').click();">Limpar</a></div>
+                </form>
                 <br /><br />
                 <div id="json" class="json-editor"></div>
             </div>
@@ -17,8 +26,3 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-
-<!-- /.row -->
-<footer style="position: fixed; bottom: 24px; right: 12px;">
-    <a class="btn btn-primary">Salvar Alterações</a>
-</footer>

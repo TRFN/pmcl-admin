@@ -43,16 +43,20 @@
 
             if(isset($ctx->urlParams[2]) && isset($arquivos[(int)$ctx->urlParams[2]])){
 
-                $arquivo = $arquivos[(int)$ctx->urlParams[2]];
-                $arquivo = explode("/", $arquivo);
-                $arquivo = $arquivo[count($arquivo)-1];
+                if(isset($_POST["k"])){
+                    file_put_contents($arquivos[(int)$ctx->urlParams[2]], $_POST["k"]);
+                } else {
+                    $arquivo = $arquivos[(int)$ctx->urlParams[2]];
+                    $arquivo = explode("/", $arquivo);
+                    $arquivo = $arquivo[count($arquivo)-1];
 
-                $ctx->regVarStrict("layout", "tabelas");
+                    $ctx->regVarStrict("layout", "tabelas");
 
-                $ctx->regVarStrict("conteudo",file_get_contents($arquivos[(int)$ctx->urlParams[2]]));
+                    $ctx->regVarStrict("conteudo",file_get_contents($arquivos[(int)$ctx->urlParams[2]]));
 
-                $ctx->regVarStrict("painel-titulo", "{$projeto} -> {$arquivo}");
-                $ctx->regVarStrict("painel-icone", "cogs");
+                    $ctx->regVarStrict("painel-titulo", "{$projeto} -> {$arquivo}");
+                    $ctx->regVarStrict("painel-icone", "cogs");
+                }
             }
         }
     }
