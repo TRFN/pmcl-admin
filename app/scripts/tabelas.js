@@ -31,8 +31,15 @@ projetos = %lista%;
 
 for(i = 0; i < projetos.length; i++ ){
     nome = projetos[i].split("/");
-    $("#projetos").append('<div class="col-md-3 col-lg-2"><a href="/%subd%' + String(i) + '" class="btn btn-primary btn-block" style="font-weight: bold;margin: 24px 0;font-size: 12px;">' + nome[nome.length-1] + '</a></div>');
+    $("#projetos").append('<div class="col-md-6 col-lg-4 projeto" style=" transition: opacity 600ms ease;"><a href="/%subd%' + String(i) + '" class="btn btn-primary btn-block" style="font-weight: bold;margin: 8px 0;font-size: 12px;">' + nome[nome.length-3] + "@" + nome[nome.length-2] + " => " + nome[nome.length-1].split(".json").join("") + '</a></div>');
 }
+
+$("#pesquisa-nav").keyup(function(){
+    const pesq = $(this).val();
+    $("#projetos > .projeto").each(function(){
+        $(this).css("opacity", $(this).text().split(pesq).length > 1 ? "1":".25");
+    });
+});
 
 function acaocor(color) {
     if(!/rgb/.test($(this).val())){
