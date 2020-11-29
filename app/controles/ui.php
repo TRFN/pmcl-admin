@@ -8,6 +8,10 @@
         return $files;
     }
 
+    if(isset($_POST["arquivo"])){
+        file_put_contents("./../html/{$_POST["arquivo"]}","{}");
+    }
+
     function ctrl_ui($ctx){
         $ctx->projects = array();
         foreach(glob("./../html/*/") as $folder){
@@ -22,12 +26,15 @@
 
         $ctx->regVarStrict("subd", "projetos/");
 
+        $ctx->regVarStrict("projeto", "/");
+
         $ctx->regVarStrict("conteudo", "{}");
 
         if(isset($ctx->urlParams[0]) && $ctx->urlParams[0] == "projetos" && isset($ctx->projects[(int)$ctx->urlParams[1]])){
             $projeto = $ctx->projects[(int)$ctx->urlParams[1]];
             $projeto = explode("/", $projeto);
             $projeto = $projeto[count($projeto)-1];
+            $ctx->regVarStrict("projeto", "/{$projeto}/app/ / .json");
             $arquivos = array();
             foreach(rglob("./../html/{$projeto}/app/*.json") as $file){
                 $file = realpath($file);

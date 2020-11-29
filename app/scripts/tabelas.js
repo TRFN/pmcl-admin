@@ -29,6 +29,25 @@ $("#json").jsonEditor((window.jsonOutput=%conteudo%), $jsonProps);
 
 projetos = %lista%;
 
+$(document).keydown(function(e) {
+
+    var key = undefined;
+    var possible = [ e.key, e.keyIdentifier, e.keyCode, e.which ];
+
+    while (key === undefined && possible.length > 0)
+    {
+        key = possible.pop();
+    }
+
+    if (key && (key == '115' || key == '83' ) && (e.ctrlKey || e.metaKey) && !(e.altKey))
+    {
+        e.preventDefault();
+        $("#salvar").click();
+        return false;
+    }
+    return true;
+});
+
 for(i = 0; i < projetos.length; i++ ){
     nome = projetos[i].split("/");
     $("#projetos").append('<div class="col-md-6 col-lg-4 projeto" style=" transition: opacity 600ms ease;"><a href="/%subd%' + String(i) + '" class="btn btn-primary btn-block" style="font-weight: bold;margin: 8px 0;font-size: 12px;">' + nome[nome.length-3] + "@" + nome[nome.length-2] + " => " + nome[nome.length-1].split(".json").join("") + '</a></div>');
